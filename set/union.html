@@ -1,0 +1,133 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+  body{
+    text-align: center;
+  background: lightblue;
+  }
+  h4{
+    margin-left:350px;
+  }
+  p{
+    font-size:24px;
+    margin-top: -7px;
+    font-family:verdana;
+    font-style:bold;
+    color: blue;
+    margin-top: 10px;
+  }
+
+.imgcontainer{
+  margin-left:270px;
+display:flex;
+overflow-x:auto;
+border:2px solid #eb34d5;
+background-color:#fff;
+border-radius:0px;
+height:130px;
+width:580px;
+box-shadow: 10px 10px 14px 1px rgba(00,00,00,0.2);
+}
+.imgcontainer img{
+  margin-left:5px;
+  margin-bottom: -10px;
+text-align:center;
+border:1px solid black;
+height:120px;
+width:140px;
+box-shadow: 10px 10px 14px 1px rgba(00,00,00,0.2);
+}
+.imgcontainer.dragoo{
+
+overflow-x: auto;
+}
+.container 
+{
+	position: relative;
+}
+a{
+  margin-top:-30px;
+  margin-left: 800px;
+}
+.shape
+        {
+            text-align:center;
+			     float:left;
+            background-color: lightgrey;
+            width: 70px;
+
+            border: 2px solid #eb34d5 ;
+            padding: 20px;
+            margin: 10px;
+            margin-top: -45px;
+        }
+#wrong
+{
+	margin-right: 1100px;
+}
+.imgA{
+margin-left:-10px;
+width: 100px;
+height: 100px;
+}
+</style>
+<script>
+   
+            
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+ 
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  var data1=ev.target.id;
+  if(data.includes(data1))
+  {
+  ev.target.appendChild(document.getElementById(data));
+  document.getElementById(data).style.display='none';
+  }
+  else
+  {
+    document.getElementById("wrong").style.display="block";
+    document.getElementById("wrong").src="oh no.gif";
+    var x=document.getElementById("audio");
+            x.play();
+            setTimeout(function(){ document.getElementById("wrong").style.display='none'; }, 2000); 
+  }
+}
+</script>
+</head>
+<body>
+<h2>UNION</h2>
+<a href="index.html" target="display"><BUTTON>HOME</BUTTON></a>
+<div>
+  <div class="imgcontainer" align="center">
+    <img class="dragoo" src="uni1.jpeg" draggable="true" ondragstart="drag(event)"  >
+    <img class="dragoo" src="unionans.jpeg" draggable="true" ondragstart="drag(event)" id="bowl C">
+<img class="dragoo" src="uni2.jpeg" draggable="true" ondragstart="drag(event)"  >
+ <img class="dragoo" src="uni3.jpeg" draggable="true" ondragstart="drag(event)" >
+  </div>
+</div>
+<div>
+  <h3>SELECT THE CORRECT OPTION AND DRAG IT INTO C</h3>
+</div>
+<div class="main" style="margin-top: 100px;margin-left: 270px; ">
+  <img class="shape1" style="height: 100px; width: 100px; display: none;margin-left: 600px;" id="wrong" src="" alt="" >
+  <p class="shape" id="bowl A" ondrop="drop(event)" ondragover="allowDrop(event)" > A <img class="imgA" src="bowlA.jpeg"></p>
+  <p class="shape" id="bowl B" ondrop="drop(event)" ondragover="allowDrop(event)"> B <img class="imgA" src="bowlB.jpeg"></p>
+  <p class="shape" id="bowl C" ondrop="drop(event)" ondragover="allowDrop(event)"> C</p>
+</div>
+
+<audio id="audio">     
+  <source src="no no audi.mp3"  type="audio/mpeg">
+</audio>
+</body>
+</html>
